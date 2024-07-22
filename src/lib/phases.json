@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Night",
+    "music": [
+      "/assets/music/Night-1.mp3",
+      "/assets/music/Night-2.mp3"
+    ]
+  },
+  {
+    "name": "Loup Garou",
+    "music": [
+      "/assets/music/Loup Garou.mp3"
+    ]
+  },
+  {
+    "name": "Loup Blanc",
+    "music": [
+      "/assets/music/Loup Blanc.mp3"
+    ]
+  },
+  {
+    "name": "Sorcière",
+    "music": [
+      "/assets/music/Sorcière.mp3"
+    ]
+  },
+  {
+    "name": "Voyante",
+    "music": [
+      "/assets/music/Voyante.mp3"
+    ]
+  },
+  {
+    "name": "Voleur",
+    "music": [
+      "/assets/music/Voleur.mp3"
+    ]
+  },
+  {
+    "name": "Debate",
+    "music": [
+      "/assets/music/Debate.mp3"
+    ]
+  },
+  {
+    "name": "Vote",
+    "music": [
+      "/assets/music/Vote.mp3"
+    ]
+  }
+]

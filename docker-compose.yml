@@ -1,0 +1,14 @@
+services:
+  werewolf:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      tags:
+        - 'docker.hostag.fr/werewolf:${npm_package_version}'
+    container_name: werewolf
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    image: docker.hostag.fr/werewolf:${npm_package_version}
+    volumes:
+      - ./prisma/prod.db:/usr/src/app/prod.db

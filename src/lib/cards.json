@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Chasseur",
+    "image": "/assets/cards/Chasseur.webp",
+    "description": "Le chasseur n'a aucun rôle particulier à jouer tant qu'il est vivant. Mais dès qu'il meurt qu'il soit tué dans la nuit ou à la suite d'une décision des villageois il doit désigner une personne qui mourra également, sur-le-champ, d'une balle de son fusil.<br/>Si un chasseur amoureux est éliminé, il peut quand même tuer une personne, ce qui peut mener à une partie sans survivants puisque trois personnes mourront simultanément.<br/>Le chasseur peut choisir ou non de tirer sa dernière balle, ce qui dans certains cas est vraiment une réflexion qui n'est pas a prendre à la légère.",
+    "category": "base"
+  },
+  {
+    "name": "Cupidon",
+    "image": "/assets/cards/Cupidon.webp",
+    "description": "Cupidon est appelé uniquement la première nuit afin d'unir un couple. Le Meneur de jeu le contacte le moment venu, puis cupidon désigne deux noms parmi les joueurs. Ces deux personnes seront les amoureux. Si un des deux qui sont en couple meurt, l'autre meurt avec son amant. Pour ce faire, cupidon choisi deux personnes, elles sont alors prévenues, et découvrent avec qui elles sont désormais marié.",
+    "category": "base"
+  },
+  {
+    "name": "Loup-Garou",
+    "image": "/assets/cards/Loup-Garou.webp",
+    "description": "Le loup-garou est un être mi-homme mi-loup qui se transforme la nuit pour tuer les villageois. C'est le personnage emblématique du jeu de Loup Garou original.<br/>Le loup-garou incarne l'un des rôles de l'équipe des loups-garous. Il connaît l'identité des autres loups-garous et doit essayer de tuer tous les villageois sans se faire découvrir. Il se réunit chaque nuit avec les autres loups-garous pour décider de leur victime. Il gagne si tout le village est éliminé.",
+    "category": "base"
+  },
+  {
+    "name": "Petite fille",
+    "image": "/assets/cards/Petite Fille.webp",
+    "description": "La petite fille est un rôle très difficile à jouer. En effet lorsque les loups garous sont appelés la nuit, elle à le droit de les espionner. Il existe plusieurs variantes à ce rôle, plus intéressantes à jouer selon la communauté.<br/>Si la petite fille se fait prendre à espionner les loups garous par ceux-ci, elle meurt immédiatement, à la place de la victime désignée par les loups garous.",
+    "category": "base"
+  },
+  {
+    "name": "Simple villageois",
+    "image": "/assets/cards/Villageois.webp",
+    "description": "Le villageois est un personnage qui incarne l'habitant basique d'un village. Son rôle est de découvrir l'identité des loups-garous et de les éliminer avant qu'ils ne tuent tous les villageois. Il gagne lors ce que tous les loups garous sont morts.<br/>Le villageois n'a aucun pouvoir spécial, si ce n'est de voter au conseil du village contre celui qu'il suspecte être loup garou.",
+    "category": "base"
+  },
+  {
+    "name": "Sorcière",
+    "image": "/assets/cards/Sorcière.webp",
+    "description": "La sorcière possède deux potions : une de guérison et une d'empoisonnement. Elle ne peut utiliser chacune de ses potions qu'une seule fois au cours de la partie. Durant la nuit, lorsque les loups-garous se sont rendormis, le meneur de jeu va appeler la sorcière et va lui montrer la personne tuée par les loups-garous.<br/>La sorcière a trois possibilités :<ul><li>ressusciter la personne tuée et donc perdre sa seule potion de guérison</li><li>tuer une autre personne en plus de la victime et donc perdre sa seule potion d'empoisonnement.</li><li>ne rien faire</li></ul>La sorcière peut utiliser ses deux potions durant la même nuit si elle le souhaite.",
+    "category": "base"
+  },
+  {
+    "name": "Voleur",
+    "image": "/assets/cards/Voleur.webp",
+    "description": "Le Voleur consiste à échanger son rôle avec un autre joueur. Il est appelé par le Meneur de jeu lors de la première nuit. Il peut choisir de voler le rôle d'un autre joueur, et de devenir ce rôle. Il est alors dans l'équipe de ce rôle.",
+    "category": "base"
+  },
+  {
+    "name": "Voyante",
+    "image": "/assets/cards/Voyante.webp",
+    "description": "La voyante est un personnage qui peut connaître l'identité d'un joueur chaque nuit. Elle peut ainsi découvrir si un joueur est un loup-garou ou non. Elle peut utiliser son pouvoir chaque nuit, mais elle doit être discrète pour ne pas se faire tuer par les loups-garous.",
+    "category": "base"
+  },
+  {
+    "name": "Ancien",
+    "image": "/assets/cards/Ancien.webp",
+    "description": "L'Ancien est un personnage qui possède une grande sagesse et une résistance exceptionnelle aux attaques des loups-garous. Il peut survivre à une première attaque nocturne.<br/>Cependant, s'il est éliminé par les villageois lors d'un vote, il perd ce pouvoir de protection pour le reste de la partie.",
+    "category": "new-moon"
+  },
+  {
+    "name": "Bouc Émissaire",
+    "image": "/assets/cards/Bouc Émissaire.webp",
+    "description": "Le Bouc Émissaire a un rôle particulier: si le vote du village se termine à égalité, c'est lui qui est éliminé à la place. Après sa mort, il désigne qui peut voter le jour suivant.<br/>Son sacrifice peut souvent sauver un villageois important.",
+    "category": "new-moon"
+  },
+  {
+    "name": "Idiot du Village",
+    "image": "/assets/cards/Idiot du Village.webp",
+    "description": "L'Idiot du Village est un personnage sympathique mais un peu simple d'esprit. Si les villageois votent pour le tuer, il survit mais ne peut plus voter ensuite.<br/>Il peut cependant encore participer aux débats pour influencer le village.",
+    "category": "new-moon"
+  },
+  {
+    "name": "Joueur de Flûte",
+    "image": "/assets/cards/Joueur de Flûte.webp",
+    "description": "Le Joueur de Flûte a pour but de charmer tous les joueurs restants. Chaque nuit, il peut charmer deux joueurs, qui doivent alors essayer de survivre avec lui.<br/>Il gagne si tous les joueurs encore en vie sont charmés.",
+    "category": "new-moon"
+  },
+  {
+    "name": "Salvateur",
+    "image": "/assets/cards/Salvateur.webp",
+    "description": "Le Salvateur protège une personne chaque nuit des attaques des loups-garous. Il ne peut pas protéger la même personne deux nuits de suite.<br/>Il aide ainsi à maintenir l'équilibre dans le village.",
+    "category": "new-moon"
+  },
+  {
+    "name": "Corbeau",
+    "image": "/assets/cards/Corbeau.webp",
+    "description": "Le Corbeau désigne chaque nuit un joueur qui reçoit deux votes supplémentaires contre lui lors du vote du jour suivant.",
+    "category": "village"
+  },
+  {
+    "name": "Loup Blanc",
+    "image": "/assets/cards/Loup Blanc.webp",
+    "description": "Le Loup Blanc joue seul et doit éliminer tous les autres loups-garous. Une nuit sur deux, il peut dévorer un loup garou juste après leur tour. Il se réveille et vote en même temps que les loups.",
+    "category": "village"
+  },
+  {
+    "name": "Ours",
+    "image": "/assets/cards/Ours.webp",
+    "description": "Chaque matin, si le montreur d'ours se trouve à droite ou à gauche d'un loup-garou, l'ours grogne (le MJ).",
+    "category": "village"
+  },
+  {
+    "name": "Bouffon",
+    "image": "/assets/cards/Bouffon.png",
+    "description": "Le Bouffon est un personnage qui gagne s'il est éliminé par les villageois. Il doit donc essayer de se faire passer pour un loup-garou pour être éliminé.",
+    "category": "village"
+  }
+]
