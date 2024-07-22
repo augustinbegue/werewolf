@@ -62,20 +62,22 @@
 	let phaseIndex = 0;
 	$: phase = phases[phaseIndex];
 	let phasesMusic = phases.map((p) => {
-		return p.music.map((m) => {
-			return new Howl({
-				src: [m]
-			});
-		});
+		return p.music;
 	});
 
 	let currentMusic: Howl | undefined;
 	function toggleMusic() {
 		if (currentMusic) {
 			currentMusic.stop();
+			currentMusic.unload();
 			currentMusic = undefined;
 		} else {
-			currentMusic = selectRandomElement(phasesMusic[phaseIndex]);
+			currentMusic = new Howl({
+				src: selectRandomElement(phasesMusic[phaseIndex])!,
+				volume: 1,
+				loop: true,
+				html5: true
+			});
 			currentMusic!.play();
 		}
 	}
@@ -190,8 +192,18 @@
 				on:click={() => {
 					phaseIndex = (phaseIndex + 1) % phases.length;
 					if (currentMusic) {
-						currentMusic.fade(1, 0, 500);
-						currentMusic = selectRandomElement(phasesMusic[phaseIndex]);
+						currentMusic.fade(1, 0, 1000);
+						let m = currentMusic;
+						m.once('fade', () => {
+							m.stop();
+						});
+
+						currentMusic = new Howl({
+							src: selectRandomElement(phasesMusic[phaseIndex]),
+							volume: 1,
+							loop: true,
+							html5: true
+						});
 						currentMusic?.play();
 					}
 				}}
