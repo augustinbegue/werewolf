@@ -59,9 +59,12 @@
 		}
 	}
 
+	const gamePhases = phases.filter(
+		(p) => data.roles.filter((r) => r.maxCount > 0).some((r) => r.name === p.name) || !p.role
+	);
 	let phaseIndex = 0;
-	$: phase = phases[phaseIndex];
-	let phasesMusic = phases.map((p) => {
+	$: phase = gamePhases[phaseIndex];
+	let phasesMusic = gamePhases.map((p) => {
 		return p.music;
 	});
 
@@ -190,7 +193,7 @@
 			<button
 				class="btn btn-sm btn-primary"
 				on:click={() => {
-					phaseIndex = (phaseIndex + 1) % phases.length;
+					phaseIndex = (phaseIndex + 1) % gamePhases.length;
 					if (currentMusic) {
 						currentMusic.fade(1, 0, 1000);
 						let m = currentMusic;
