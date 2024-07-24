@@ -58,6 +58,14 @@
 			}
 
 			alert('La partie a été relancée.');
+
+			cards.forEach((card) => {
+				if (card.metadata.abilities) {
+					card.metadata.abilities.forEach((ability) => {
+						ability.used = 0;
+					});
+				}
+			});
 		}
 	}
 
@@ -294,16 +302,16 @@
 		</button>
 		<a class="btn btn-secondary btn-sm" href="/new"> Nouvelle Partie </a>
 	</div>
-	<div class="toast toast-bottom toast-center">
+	<div class="toast toast-bottom toast-center w-screen container mx-auto">
 		{#if phase.metadata?.abilities}
 			{#each phase.metadata?.abilities as ability}
-				<div class="flex flex-row gap-4 justify-between bg-base-200 p-4 rounded-xl">
+				<div class="flex flex-col md:flex-row gap-4 justify-between bg-base-200 p-4 rounded-xl">
 					<div class="flex flex-col gap-2">
 						<p class="text-lg font-bold">{ability.name}</p>
-						<p>{ability.description}</p>
+						<p class="text-wrap">{ability.description}</p>
 					</div>
 					{#if ability.usage > 0}
-						<div class="flex flex-col items-end gap-2">
+						<div class="flex flex-col md:items-end gap-2">
 							<p class="text-lg font-bold">
 								Utilisations restantes: {ability.usage - (ability.used ?? 0)}
 							</p>
