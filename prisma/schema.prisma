@@ -35,5 +35,5 @@ model Role {
   game     Game     @relation(fields: [gameId], references: [id])
   count    Int
   maxCount Int
-  Player   Player[]
+  player   Player[]
 }

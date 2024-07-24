@@ -6,72 +6,26 @@
       "/assets/music/Night-2.mp3",
       "/assets/music/Night-3.mp3"
     ],
-    "role": false
-  },
-  {
-    "name": "Cupidon",
-    "music": [
-      "/assets/music/Cupidon.mp3"
-    ],
-    "role": true
-  },
-  {
-    "name": "Salvateur",
-    "music": [],
-    "role": true
-  },
-  {
-    "name": "Loup-Garou",
-    "music": [
-      "/assets/music/Loup Garou.mp3"
-    ],
-    "role": true
-  },
-  {
-    "name": "Loup Blanc",
-    "music": [
-      "/assets/music/Loup Blanc.mp3"
-    ],
-    "role": true
-  },
-  {
-    "name": "Sorcière",
-    "music": [
-      "/assets/music/Sorcière.mp3"
-    ],
-    "role": true
-  },
-  {
-    "name": "Voyante",
-    "music": [
-      "/assets/music/Voyante.mp3"
-    ],
-    "role": true
-  },
-  {
-    "name": "Corbeau",
-    "music": [],
-    "role": true
-  },
-  {
-    "name": "Voleur",
-    "music": [
-      "/assets/music/Voleur.mp3"
-    ],
-    "role": true
+    "metadata": {
+      "order": 0
+    }
   },
   {
     "name": "Debat",
     "music": [
       "/assets/music/Debate.mp3"
     ],
-    "role": false
+    "metadata": {
+      "order": 200
+    }
   },
   {
     "name": "Vote",
     "music": [
       "/assets/music/Vote.mp3"
     ],
-    "role": false
+    "metadata": {
+      "order": 201
+    }
   }
 ]

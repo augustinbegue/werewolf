@@ -4,8 +4,10 @@
 	import type { PageData } from '../../../routes/game/[id]/play/$types';
 	import { Howl, Howler } from 'howler';
 
+	import cards from '$lib/cards.json';
 	import phases from '$lib/phases.json';
 	import { selectRandomElement } from '$lib/utils';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
@@ -59,14 +61,93 @@
 		}
 	}
 
-	const gamePhases = phases.filter(
-		(p) => data.roles.filter((r) => r.maxCount > 0).some((r) => r.name === p.name) || !p.role
-	);
+	let gamePhases: any[];
 	let phaseIndex = 0;
-	$: phase = gamePhases[phaseIndex];
-	let phasesMusic = gamePhases.map((p) => {
-		return p.music;
-	});
+	let nightIndex = 0;
+	$: phase = gamePhases ? gamePhases[phaseIndex] : 0;
+	let phasesMusic: any[];
+
+	function getPhasesArray() {
+		let tmp = [...phases];
+
+		for (let i = 0; i < data.roles.length; i++) {
+			const role = data.roles[i];
+			if (role.maxCount === 0) continue;
+
+			const card = cards.find((c) => c.name === role.name);
+
+			if (isNaN(card?.metadata.order ?? NaN)) continue;
+
+			const abilities = card?.metadata.abilities ?? [];
+
+			for (let j = 0; j < abilities.length; j++) {
+				const ability = abilities[j];
+
+				if (ability.trigger === 'night') {
+					if (ability.usage === 0) {
+						tmp.push(card);
+						break;
+					} else if (ability.used < ability.usage) {
+						console.log(`${role.name} - ${ability.name}`);
+
+						tmp.push(card);
+						break;
+					}
+				} else if (ability.trigger === 'everyOtherNight' && nightIndex % 2 === 1) {
+					if (ability.usage === 0) {
+						tmp.push(card);
+						break;
+					} else if (ability.used < ability.usage) {
+						tmp.push(card);
+						break;
+					}
+				} else if (ability.trigger === 'firstNightOnly' && nightIndex === 0) {
+					if (ability.usage === 0) {
+						tmp.push(card);
+						break;
+					} else if (ability.used < ability.usage) {
+						tmp.push(card);
+						break;
+					}
+				}
+			}
+		}
+
+		tmp = tmp.sort((a, b) => (a.metadata.order ?? 0) - (b.metadata.order ?? 0));
+
+		return tmp;
+	}
+
+	function nextPhase() {
+		phaseIndex = phaseIndex + 1;
+
+		console.log(phaseIndex, gamePhases.length);
+
+		if (phaseIndex >= gamePhases.length) {
+			phaseIndex = 0;
+			nightIndex = nightIndex + 1;
+			gamePhases = getPhasesArray();
+			phasesMusic = gamePhases.map((p) => {
+				return p.music;
+			});
+		}
+
+		if (currentMusic) {
+			currentMusic.fade(1, 0, 1000);
+			let m = currentMusic;
+			m.once('fade', () => {
+				m.stop();
+			});
+
+			currentMusic = new Howl({
+				src: selectRandomElement(phasesMusic[phaseIndex]),
+				volume: 1,
+				loop: true,
+				html5: true
+			});
+			currentMusic?.play();
+		}
+	}
 
 	let currentMusic: Howl | undefined;
 	function toggleMusic() {
@@ -84,6 +165,13 @@
 			currentMusic!.play();
 		}
 	}
+
+	onMount(() => {
+		gamePhases = getPhasesArray();
+		phasesMusic = gamePhases.map((p) => {
+			return p.music;
+		});
+	});
 </script>
 
 {#if !showRole}
@@ -180,7 +268,9 @@
 </div>
 {#if !showRole}
 	<div class="flex flex-col justify-center items-center my-4">
-		<p class=" mt-4 mb-2 italic">Phase de Jeu</p>
+		<p class=" mt-4 mb-2 italic">
+			Phase de Jeu - {nightIndex === 0 ? '1ère' : `${nightIndex + 1}ème`} Nuit
+		</p>
 		<div class="flex flex-row gap-4">
 			{#if currentMusic}
 				<button class="btn btn-sm btn-ghost" on:click={toggleMusic}>🔊</button>
@@ -190,29 +280,7 @@
 			<span class="inline-flex items-center justify-center">
 				{phase.name}
 			</span>
-			<button
-				class="btn btn-sm btn-primary"
-				on:click={() => {
-					phaseIndex = (phaseIndex + 1) % gamePhases.length;
-					if (currentMusic) {
-						currentMusic.fade(1, 0, 1000);
-						let m = currentMusic;
-						m.once('fade', () => {
-							m.stop();
-						});
-
-						currentMusic = new Howl({
-							src: selectRandomElement(phasesMusic[phaseIndex]),
-							volume: 1,
-							loop: true,
-							html5: true
-						});
-						currentMusic?.play();
-					}
-				}}
-			>
-				Suivante
-			</button>
+			<button class="btn btn-sm btn-primary" on:click={nextPhase}> Suivante </button>
 		</div>
 	</div>
 	<div class="flex flex-row gap-4">
@@ -225,6 +293,34 @@
 			Relancer la Partie
 		</button>
 		<a class="btn btn-secondary btn-sm" href="/new"> Nouvelle Partie </a>
+	</div>
+	<div class="toast toast-bottom toast-center">
+		{#if phase.metadata?.abilities}
+			{#each phase.metadata?.abilities as ability}
+				<div class="flex flex-row gap-4 justify-between bg-base-200 p-4 rounded-xl">
+					<div class="flex flex-col gap-2">
+						<p class="text-lg font-bold">{ability.name}</p>
+						<p>{ability.description}</p>
+					</div>
+					{#if ability.usage > 0}
+						<div class="flex flex-col items-end gap-2">
+							<p class="text-lg font-bold">
+								Utilisations restantes: {ability.usage - (ability.used ?? 0)}
+							</p>
+							<span class="flex flex-col justify-center items-center">
+								<button
+									class="btn btn-ghost btn-sm"
+									disabled={ability.used === ability.usage}
+									on:click={() => {
+										ability.used = (ability.used ?? 0) + 1;
+									}}>✔️</button
+								>
+							</span>
+						</div>
+					{/if}
+				</div>
+			{/each}
+		{/if}
 	</div>
 {/if}
 
