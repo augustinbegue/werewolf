@@ -302,7 +302,7 @@
 		</button>
 		<a class="btn btn-secondary btn-sm" href="/new"> Nouvelle Partie </a>
 	</div>
-	<div class="toast toast-bottom toast-center w-screen container mx-auto">
+	<div class="toast toast-top toast-center w-screen container mx-auto">
 		{#if phase.metadata?.abilities}
 			{#each phase.metadata?.abilities as ability}
 				<div class="flex flex-col md:flex-row gap-4 justify-between bg-base-200 p-4 rounded-xl">

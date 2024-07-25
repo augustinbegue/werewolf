@@ -26,25 +26,34 @@
 		<form action="/new" method="POST" class="flex flex-col gap-4 items-start">
 			<!-- Nombre de joueurs -->
 			<div class="form-control">
-				<label for="nbPlayers" class="input input-bordered flex items-center gap-2 w-max">
-					Nombre de joueurs:
-					<input
-						type="number"
-						id="nbPlayers"
-						name="nbPlayers"
-						min="6"
-						max="18"
-						required
-						bind:value={nbPlayers}
-					/>
+				<label for="nbPlayers" class="label">
+					<span class="label-text">Nombre de joueurs:</span>
 				</label>
+				<input
+					class="input input-bordered"
+					type="number"
+					id="nbPlayers"
+					name="nbPlayers"
+					min="6"
+					max="18"
+					required
+					bind:value={nbPlayers}
+				/>
 			</div>
 
 			<div class="form-control">
-				<label for="player1" class="input input-bordered flex items-center gap-2 w-max">
-					Nom du Meneur de Jeu:
-					<input type="text" id="player1" name="player1" min="6" max="18" required />
+				<label for="player1" class="label">
+					<span class="label-text">Nom du Meneur de Jeu:</span>
 				</label>
+				<input
+					class="input input-bordered"
+					type="text"
+					id="player1"
+					name="player1"
+					min="6"
+					max="18"
+					required
+				/>
 			</div>
 
 			<span>
@@ -60,15 +69,15 @@
 			>
 				{#each roles as role}
 					<div
-						class="border input-bordered rounded-xl p-2 w-max tooltip tooltip-primary"
+						class="border input-bordered rounded-xl w-max tooltip tooltip-primary tooltip-top"
 						data-tip={role.description.replace(/<[^>]*>?/gm, '')}
 					>
-						<img src={role.image} alt="" />
-						<label for={role.name} class="input flex items-center gap-2 w-max">
+						<img src={role.image} class="rounded-xl" alt={role.name} />
+						<label for={role.name} class="input flex items-center gap-2 w-full rounded-xl">
 							{role.name}:
 							<input
 								type="number"
-								class="w-8"
+								class=""
 								id={role.name}
 								name={role.name}
 								min="0"
