@@ -2,7 +2,10 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    fontFamily: {
+      display: ["Playfair Display", "serif"],
+      body: ["Roboto", "sans-serif"],
+    }
   },
   plugins: [
     require('daisyui'),

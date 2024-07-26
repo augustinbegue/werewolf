@@ -2,9 +2,19 @@
 	import cards from '$lib/cards.json';
 </script>
 
+<div class="hero bg-base-200 min-h-screen">
+	<div class="hero-content text-center">
+		<div class="max-w-md">
+			<h1 class="text-4xl text-gray-100 font-bold font-display">Loup Garou</h1>
+			<p class="py-6">
+				Joue au jeu du Loup-Garou sans cartes! Crée une partie avec le nombre de joueurs et les
+				roles que tu veux, et demande a tes amis de rejoindre avec leur téléphone.
+			</p>
+			<a class="btn btn-primary max-w-52 font-body" href="/new">Nouvelle Partie</a>
+		</div>
+	</div>
+</div>
 <section class="container mx-auto flex flex-col justify-center p-4 gap-4">
-	<h1 class="text-4xl text-gray-100 font-bold">Loup Garou</h1>
-	<a class="btn btn-primary max-w-52" href="/new">Nouvelle Partie</a>
 	<div class="formatted">
 		<h2 class="">A Propos</h2>
 		<p>Joue au jeu du Loup-Garou sans cartes!</p>
@@ -51,22 +61,22 @@
 <style lang="postcss">
 	.formatted {
 		& img {
-			@apply aspect-square grow-0 self-start;
+			@apply aspect-square grow-0 self-start rounded-xl;
 		}
 		& > div {
 			@apply flex flex-col md:flex-row md:gap-4 mt-4;
 		}
 		& h2 {
-			@apply text-2xl font-semibold mb-4 mt-8;
+			@apply text-2xl font-semibold mb-4 mt-8 font-display;
 		}
 		& h3 {
-			@apply text-xl font-semibold mb-2 mt-4;
+			@apply text-xl font-semibold mb-2 mt-4 font-display;
 		}
 		& h4 {
-			@apply text-lg font-semibold mb-1;
+			@apply text-lg font-semibold mb-1 font-display;
 		}
 		& p {
-			@apply text-base;
+			@apply text-base font-body;
 		}
 		& ul {
 			@apply list-disc pl-6;
