@@ -79,6 +79,7 @@
 
 			<div class="flex flex-row justify-center items-center gap-2 w-full">
 				{#each roles.filter((r) => r.name === 'Simple villageois' || r.name === 'Loup-Garou') as role}
+					<input type="number" class="hidden" bind:value={role.count} name={role.name} />
 					<div class="tooltip" data-tip={role.name}>
 						<div class="w-32">
 							<img src={role.image} class="rounded-xl" alt={role.name} />
@@ -115,6 +116,7 @@
 
 			<div class="flex flex-row flex-wrap gap-2 justify-center">
 				{#each roles.filter((r) => r.name !== 'Simple villageois' && r.name !== 'Loup-Garou') as role}
+					<input type="number" class="hidden" bind:value={role.count} name={role.name} />
 					<div class="tooltip" data-tip={role.name}>
 						<button
 							class="w-32"

@@ -28,23 +28,6 @@
 		}
 	}
 
-	let music: Howl;
-	function startMusic() {
-		if (music) {
-			music.stop();
-		}
-
-		music = new Howl({
-			src: ['/assets/music/Lobby.mp3'],
-			loop: true
-		});
-		music.once('load', () => {
-			console.log('music loaded');
-
-			music.play();
-		});
-	}
-
 	let timer: number;
 	onMount(() => {
 		generateQRCode();
@@ -60,56 +43,51 @@
 </script>
 
 <div class="container mx-auto p-4 flex flex-col gap-4">
-	<h1 class="text-2xl font-semibold">Partie {data?.id}</h1>
-
-	<button class="btn btn-outline" on:click={startMusic}>Start Music</button>
-
+	<h1 class="text-3xl font-semibold font-display">En attente de tout les joueurs</h1>
 	<div>
 		<img
 			bind:this={img}
-			class="max-w-64"
+			class="max-w-64 rounded-xl"
 			alt="qrcode"
 			on:click={(e) => {
 				e.target.requestFullscreen();
 			}}
 		/>
-		<p>Partagez ce QR Code pour rejoindre la partie.</p>
+		<p class="font-body mt-2">Partagez ce QR Code pour rejoindre la partie.</p>
 	</div>
 
-	<fieldset class="border border-solid border-base-content p-3 rounded-md">
-		<legend class="text-sm">Joueurs ({playerCount}/{data.nbPlayers})</legend>
-		<ul class="list-disc pl-6">
-			{#each data?.players as player}
-				<li>
-					{player.name}
-					{#if me?.owner && player.id !== me.id}
-						<button
-							on:click={() => {
-								fetch(`/api/game/${data.id}/player/${player.id}/kick`, {
-									method: 'POST'
-								});
-							}}
-						>
-							❌
-						</button>
-					{/if}
-					{#if player.owner}
-						<span>(👑)</span>
-					{/if}
-				</li>
-			{/each}
-		</ul>
-	</fieldset>
-
-	<fieldset class="border border-solid border-base-content p-3 rounded-md">
-		<legend class="text-sm">Roles</legend>
-		<ul class="list-disc pl-6">
-			{#each data?.roles as role}
-				{#if role.maxCount > 0}
-					<li>{role.name}: {role.maxCount}</li>
+	<h2 class="text-2xl font-display">Joueurs ({playerCount}/{data.nbPlayers})</h2>
+	<ul>
+		{#each data?.players as player}
+			<li class="font-body bg-base-200 p-2 rounded-xl px-3 mb-2">
+				{player.name}
+				{#if me?.owner && player.id !== me.id}
+					<button
+						on:click={() => {
+							fetch(`/api/game/${data.id}/player/${player.id}/kick`, {
+								method: 'POST'
+							});
+						}}
+					>
+						❌
+					</button>
 				{/if}
-			{/each}
-		</ul>
-	</fieldset>
-	<p>La partie sera lancée lorsque {data.nbPlayers} joueurs auront rejoins.</p>
+				{#if player.owner}
+					<span>(👑)</span>
+				{/if}
+			</li>
+		{/each}
+		<p>La partie sera lancée lorsque {data.nbPlayers} joueurs auront rejoins.</p>
+	</ul>
+
+	<h2 class="text-2xl font-display">Roles</h2>
+	<ul>
+		{#each data?.roles as role}
+			{#if role.maxCount > 0}
+				<li class="font-body bg-base-200 p-2 rounded-xl px-3 mb-2">
+					{role.name}: {role.maxCount}
+				</li>
+			{/if}
+		{/each}
+	</ul>
 </div>
